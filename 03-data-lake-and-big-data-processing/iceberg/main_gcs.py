@@ -7,9 +7,9 @@ from pyiceberg.types import NestedField, StringType
 
 
 REGISTRY_DATABASE_URI = "sqlite:///catalog/catalog_gcs.db"  # Replace this with your database URI
-GCP_PROJECT_ID = "YOUR_GCP_PROJECT_ID" # Replace with your GCP project ID
-GCS_BUCKET = "YOUR_GCS_BUCKET" # Replace with your GCS bucket
-KEYFILE = "YOUR_KEYFILE_PATH" # # Replace this with your keyfile
+GCP_PROJECT_ID = "project-3826e055-85ee-4d4f-a24" # Replace with your GCP project ID
+GCS_BUCKET = "deb_07" # Replace with your GCS bucket
+KEYFILE = "../examples/uploading-to-gcs/cert/deb-uploading-files-to-gcs.json" # # Replace this with your keyfile
 
 
 def get_access_token(service_account_file, scopes):

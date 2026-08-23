@@ -5,7 +5,7 @@ from google.cloud import bigquery
 from google.oauth2 import service_account
 
 
-GCS_BUCKET = "YOUR_GCS_BUCKET"
+GCS_BUCKET = "deb_07"
 
 
 def load_data_from_gcs_to_bigquery(gsutil_uri, source_format):
