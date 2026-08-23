@@ -17,10 +17,10 @@ def upload_blob(bucket_name, source_file_name, destination_blob_name):
     # destination_blob_name = "storage-object-name"
 
     # keyfile = os.environ.get("KEYFILE_PATH")
-    keyfile = "YOUR_KEYFILE_PATH"
+    keyfile = "./cert/deb-uploading-files-to-gcs.json"
     service_account_info = json.load(open(keyfile))
     credentials = service_account.Credentials.from_service_account_info(service_account_info)
-    project_id = "YOUR_GCP_PROJECT_ID"
+    project_id = "project-3826e055-85ee-4d4f-a24"
 
     storage_client = storage.Client(
         project=project_id,

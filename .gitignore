@@ -194,3 +194,5 @@ data/
 
 # DEB dataengineercafe keyfiles
 dataengineercafe-*.json
+/00-bootcamp-project
+cert/
