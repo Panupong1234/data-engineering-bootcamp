@@ -2,10 +2,10 @@ version: 2
 
 models:
 
-  - name: my_users
-    description: Greenery users
+  - name: stg_greenery__users
+    description: Staging models for Greenery users
     columns:
-      - name: user_id
+      - name: user_guid
         description: User ID
         data_tests:
           - not_null
@@ -27,21 +27,21 @@ models:
         description: User's phone number
         data_tests:
           - not_null
-      - name: created_at
+      - name: created_at_utc
         description: Timestamp when the user was created
         data_tests:
           - not_null
-      - name: updated_at
+      - name: updated_at_utc
         description: Timestamp when the user was last updated
         data_tests:
           - not_null
-      - name: address_id
+      - name: address_guid
         description: Address ID
         data_tests:
           - not_null
 
-  - name: my_events
-    description: Greenery events
+  - name: stg_greenery__events
+    description: Staging models for Greenery events
     columns:
       - name: event_id
         description: Event ID
@@ -59,8 +59,8 @@ models:
         data_tests:
           - not_null
           - relationships:
-              to: ref('my_users')
-              field: user_id
+              to: ref('stg_greenery__users')
+              field: user_guid
       - name: page_url
         description: URL of the page where the event occurred
         data_tests:

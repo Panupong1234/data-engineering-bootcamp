@@ -1,8 +1,8 @@
 select
-    user_id,
-    created_at,
-    updated_at
+    user_guid,
+    created_at_utc,
+    updated_at_utc
 
-from {{ ref('my_users') }}
-where created_at > current_timestamp()
-   or updated_at > current_timestamp()
+from {{ ref('stg_greenery__users') }}
+where created_at_utc > current_timestamp()
+   or updated_at_utc > current_timestamp()

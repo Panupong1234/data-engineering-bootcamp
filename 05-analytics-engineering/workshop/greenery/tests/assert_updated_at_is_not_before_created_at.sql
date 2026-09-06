@@ -1,7 +1,7 @@
 select
-    user_id,
-    created_at,
-    updated_at
+    user_guid,
+    created_at_utc,
+    updated_at_utc
 
-from {{ ref('my_users') }}
-where updated_at < created_at
+from {{ ref('stg_greenery__users') }}
+where updated_at_utc < created_at_utc
