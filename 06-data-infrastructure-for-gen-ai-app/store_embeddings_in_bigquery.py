@@ -7,14 +7,14 @@ from google.cloud import bigquery
 from google.oauth2 import service_account
 
 
-GCP_PROJECT_ID = "YOUR_GCP_PROJECT_ID"
-DATASET_ID = "YOUR_DATASET_ID"
-KEYFILE = "YOUR_KEYFILE"
+GCP_PROJECT_ID = "project-3826e055-85ee-4d4f-a24"
+DATASET_ID = "deb_bootcamp"
+KEYFILE = "../00-bootcamp-project/cert/deb-dbt.json"
 # api_key = os.environ.get("GEMINI_API_KEY")
-GEMINI_API_KEY = "YOUR_GEMINI_API_KEY"
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
 
-def get_embedding(client, model: str = "gemini-embedding-exp-03-07", text: str = ""):
+def get_embedding(client, model: str = "gemini-embedding-2", text: str = ""):
     result = client.models.embed_content(
         model=model,
         contents=text,
@@ -28,6 +28,8 @@ df = pd.DataFrame(data={
         "QR codes systems for COVID-19.\nSimple tools for bars, restaurants, offices, and other small proximity businesses.",
         "QR code, beacon, and other mobile transactions\nWe have created web and mobile tools which enable both companies and consumers to benefit from mobile transaction technologies (QR codes, beacon, and more). These benefits include mobile commerce, social media, lead generation, analytics, networking, and more. ...",
         "Turning experience into better medicine.\nIodine is creating a massive community of people sharing their experience with what works - and what doesn't - in medicine.\nWe believe Iodine is transforming the consumer experience around health, by providing personal, clear, actionable, and trustworthy resources ...",
+        # "Turning experience into better medicine.\nIodine is creating a massive community of people sharing their experience with what works - and what doesn't - in medicine.\nWe believe Iodine is transforming the consumer experience around health, by providing personal, clear, actionable, and trustworthy resources ...",
+        "Weather in Thailand.\nThailand has a tropical climate with hot, rainy, and cool seasons.",
     ]
 })
 print(df.head())
@@ -35,7 +37,7 @@ print(df.head())
 # Set up a Gemini client
 client = genai.Client(api_key=GEMINI_API_KEY)
 
-df["embedding"] = df.text.map(lambda x: get_embedding(client, text=x).values)
+df["embedding"] = df.text.map(lambda x: get_embedding(client, model="gemini-embedding-2",text=x).values)
 print(df.head())
 
 # BigQuery's part

@@ -8,15 +8,15 @@ from google.cloud import bigquery
 from google.oauth2 import service_account
 
 
-GCP_PROJECT_ID = "YOUR_GCP_PROJECT_ID"
-DATASET_ID = "YOUR_DATASET_ID"
-TABLE_ID = "YOUR_TABLE_ID"
-KEYFILE = "YOUR_KEYFILE"
+GCP_PROJECT_ID = "project-3826e055-85ee-4d4f-a24"
+DATASET_ID = "deb_bootcamp"
+TABLE_ID = "courses"
+KEYFILE = "../00-bootcamp-project/cert/deb-dbt.json"
 # api_key = os.environ.get("GEMINI_API_KEY")
-GEMINI_API_KEY = "YOUR_GEMINI_API_KEY"
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
 
-def get_embedding(client, model: str = "gemini-embedding-exp-03-07", text: str = ""):
+def get_embedding(client, model: str = "gemini-embedding-2", text: str = ""):
     result = client.models.embed_content(
         model=model,
         contents=text,
@@ -24,7 +24,7 @@ def get_embedding(client, model: str = "gemini-embedding-exp-03-07", text: str =
     return result.embeddings[0]
 
 
-def ask_gemini(client, model: str = "gemini-2.0-flash-001", prompt: str = ""):
+def ask_gemini(client, model: str = "gemini-3.1-flash-lite", prompt: str = ""):
     response = client.models.generate_content(
         model=model,
         contents=prompt,
@@ -113,7 +113,8 @@ print(df.head())
 load_data_to_bigquery(bigquery_client, df)
 
 # Change your quesiton here
-question = "อยากทำสาย Data Engineer ควรเรียนคอร์สอะไรดี?"
+# question = "อยากทำสาย Data Engineer ควรเรียนคอร์สอะไรดี?"
+question = "อยากทำสาย Data Science ควรเรียนคอร์สอะไรดี?"
 
 vec = get_embedding(genai_client, text=question).values
 
